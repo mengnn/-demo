@@ -1,0 +1,74 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset ="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>模仿APP直播点赞</title>
+    <style type="text/css">
+        .good{
+            width: 100px;
+            height: 30px;
+            background-color: red;
+            color: #fff;
+            position: absolute;
+            bottom: 100px;
+            padding :0px;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            line-height: 30px;
+            left: 50%;
+              -webkit-transform: translateX(-50%);
+              -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+        }
+        img{
+            width:30px;
+            height: 30px;
+            position: absolute;
+            bottom: 110px;
+            margin-left: -10px;
+            left:50%;
+        }
+        i{
+            font-style: normal;
+        }
+
+    </style>
+</head>
+<body>
+<div class="area">
+</div>
+<a class="good">点赞(<i class="num">0</i>)</a>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".good").click(function(){
+            //获取点赞数量
+            var number = $(".num").text();
+            //点赞数量+1
+            $(".num").text(Number(number)+1);
+            var height = $(window).height();
+            var width = $(window).width();
+            var x = 100;
+            var index = $(".area").children('img').length;
+            var num = Math.floor(Math.random() * 3 + 1);
+            var rand = parseInt(Math.random() * (width/2));
+            $(".area").append("<img src=''>");
+            $('img:eq('+index+')').attr("src","images/"+num+'.png');
+            var imgItem = $(".area img:last-child");
+            imgItem.stop().animate({
+                bottom:height-100,
+                width:"0",
+                height:"0",
+                opacity:"0",
+                left:rand
+            },3000,"linear",function(){
+                $(this).remove();
+            });
+        })
+    })
+</script>
+</body>
+</html>
